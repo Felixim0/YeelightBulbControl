@@ -5,7 +5,7 @@ from time import sleep
 import os
 import datetime
 import threading
-from yeelight import bulb
+from yeelight import Bulb
 
 # Use physical pin numbers
 GPIO.setmode(GPIO.BOARD)
