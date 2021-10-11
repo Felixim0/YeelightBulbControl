@@ -5,6 +5,7 @@ from time import sleep
 import os
 import datetime
 import threading
+from yeelight import bulb
 
 # Use physical pin numbers
 GPIO.setmode(GPIO.BOARD)
@@ -12,17 +13,20 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(37, GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # For the door hair switch
 GPIO.setup(40, GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # For the doorbell
 
+bulb = Bulb('192.168.1.122')
+
 try:
 
     def longButtonPress():
         print("LONG BUTTON RPESS")
+        bulb.turn_off()
 
     def shortButtonPress():
         print("SHORT BUTTON PRESSED")
-        os.system("sudo node /home/pi/main/toggle.js")
+        bulb.toggle()
     def doorOpened():
         print("Door has been opened - this message shouldnt appear until the door has been closed again!!! :0 ")
-        os.system("sudo node /home/pi/main/toggle.js")
+        bulb.turn_on()
 
     def checkButtonPressed():      # Seperate thread to check button (long and short press)
         GPIO.setmode(GPIO.BOARD)
