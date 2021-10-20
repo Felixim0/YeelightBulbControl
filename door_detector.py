@@ -19,15 +19,24 @@ try:
 
     def longButtonPress():
         print("LONG BUTTON RPESS")
-        bulb.turn_off()
+        try:
+            bulb.turn_off()
+        except:
+            pass
 
     def shortButtonPress():
         print("SHORT BUTTON PRESSED")
-        bulb.toggle()
+        try:
+            bulb.toggle()
+        except:
+            pass
     def doorOpened():
         print("Door has been opened - this message shouldnt appear until the door has been closed again!!! :0 ")
-        bulb.turn_on()
-
+        try:
+            bulb.turn_on()
+        except:
+            pass
+        
     def checkButtonPressed():      # Seperate thread to check button (long and short press)
         GPIO.setmode(GPIO.BOARD)
         counter = 0
